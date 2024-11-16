@@ -1,5 +1,31 @@
-# UUID v7 Generator and Parser
+# UUID Version 7
 
+## Introduction
+UUID (Universally Unique Identifier) version 7 is a new draft standard that introduces a time-based structure to UUID generation. This version provides properties that are particularly advantageous for ordering and indexing in modern systems.
+
+## Key Features of UUID Version 7
+
+### 1. Time-Ordered Generation
+UUIDv7 incorporates a timestamp as the primary component in its structure. This means that UUIDs generated sequentially are naturally ordered by time. Such time-ordering ensures that UUIDs can be used effectively for indexing and sorting in databases.
+
+### 2. Structural Composition
+- **Timestamp**: The most significant 48 bits of UUIDv7 represent a Unix timestamp in milliseconds.
+- **Randomness**: The remaining bits are reserved for randomness, ensuring uniqueness even in distributed systems generating UUIDs at high throughput.
+- **128-Bit Length**: Like other UUIDs, version 7 maintains a total size of 128 bits.
+
+### 3. Lexicographic Properties
+UUID version 7's time-based structure enables lexicographical (alphabetical) ordering. This property is especially useful for:
+- **Efficient Indexing**: UUIDs maintain a natural sort order, making database indexing and time-based data retrieval efficient.
+- **Range Queries**: Querying by a range of timestamps becomes straightforward due to the time component's positioning.
+- **Predictable Sequence**: Sequential inserts benefit from the partially predictable nature of UUIDv7, as it sorts new UUIDs after older ones when arranged in ascending order.
+
+## Advantages Over Older UUID Versions
+- **Better Indexing**: UUIDv7 offers improved efficiency for indexing and searching compared to UUIDv4, which is fully random.
+- **Reduced Collisions**: While UUIDv1 includes time but has potential privacy concerns and uniqueness limitations in distributed environments, UUIDv7 mitigates these issues by including randomness in the non-timestamp bits.
+
+# Golang UUID v7 Generator and Parser
+
+UUID 
 This project is a Go package that provides functionality for generating and parsing UUID v7 values. The package is designed to support both millisecond and nanosecond granularity. The UUIDs generated follow the UUID v7 format, which is time-based and ideal for sorting by generation time.
 
 ## Overview
